@@ -1,0 +1,71 @@
+import React, { useEffect } from "react";
+import { Text, View,StyleSheet,Image,ImageBackground} from 'react-native';
+
+import { useNavigation } from '@react-navigation/native';
+
+const NotificationsReusableScreen = ({ route }) => {
+  const navigation = useNavigation();
+  const { notification } = route.params;
+  useEffect(() => {
+    // Update the header title with the name from the API data
+    navigation.setOptions({ title: notification.name });
+  }, []);
+
+return (
+    <View>
+      <ImageBackground
+        source={{ uri: 'https://i.ibb.co/NLQ0rGv/BG.png' }}
+        style={styles.backgroundImage}
+        resizeMode="cover"
+      >
+        <View style={styles.imageContainer}>
+          <Image
+            source={{ uri: 'https://i.ibb.co/HxFCWR3/outline.png' }}
+            style={styles.image}
+          />
+        </View>
+      </ImageBackground>
+      <View style={styles.absoluteContainer}>
+        <Text>Your scheduled report {notification.name} has been {notification.title}</Text>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  backgroundImage: {
+    position: 'absolute',
+    top: 70,
+    left: 102,
+    width: 172,
+    height: 172,
+  },
+  imageContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    width: 105,
+    height: 105,
+    padding: 17.5,
+  },
+  absoluteContainer: {
+    position: 'absolute',
+    top: 280,
+    padding: 10,
+    borderRadius: 8,
+    Width:341,
+    Height:24,
+    left:17,
+    fontFamily:"Roboto",
+    Weight:500,
+    fontSize:16,
+    lineHeight:24,
+    letterSpacing:0.15,
+    textAlign:'center',
+  },
+});
+
+export default NotificationsReusableScreen
+
